@@ -1,0 +1,23 @@
+
+---
+itpool/*
+*.pyc
+__pycache__/
+.ipynb_checkpoints
+
+# Data and temporary files
+data/raw/*
+!.gitkeep
+
+data/preprocessed/*
+!.gitkeep
+
+data/processed/*
+!.gitkeep
+
+# Environment files
+.env
+
+# OS-specific
+.DS_Store
+

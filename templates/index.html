@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommendation Input</title>
+  <!-- Bootstrap CSS -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    crossorigin="anonymous"
+  >
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background: url('https://source.unsplash.com/1600x900/?fashion,clothing') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      backdrop-filter: blur(5px);
+    }
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .navbar-brand {
+      color: #f8f9fa !important;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 1.75rem;
+    }
+    h2 {
+      color: #222;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .form-label {
+      font-weight: 600;
+      color: #444;
+    }
+    .form-select, .form-control {
+      border-radius: 8px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .btn-custom {
+      background-color: #5a47a6;
+      border: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+    .btn-custom:hover {
+      background-color: #483591;
+      transform: translateY(-3px);
+    }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Rent The Runway</a>
+  </div>
+</nav>
+
+<!-- Form Container -->
+<div class="container">
+  <h2>Discover Your Top Picks</h2>
+  <form method="POST">
+    <!-- User ID Input -->
+    <div class="mb-4">
+      <label for="user_id" class="form-label">Enter Your User ID:</label>
+      <input type="text" class="form-control" id="user_id" name="user_id" placeholder="Enter User ID..." required>
+    </div>
+
+    <!-- Category Dropdown -->
+    <div class="mb-4">
+      <label for="category" class="form-label">Select Category:</label>
+      <select id="category" name="category" class="form-select" required>
+        <option disabled selected>Choose a Category</option>
+        {% for c in categories %}
+          <option value="{{ c }}">{{ c }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Occasion Dropdown -->
+    <div class="mb-4">
+      <label for="occasion" class="form-label">Select Occasion:</label>
+      <select id="occasion" name="occasion" class="form-select" required>
+        <option disabled selected>Choose an Occasion</option>
+        {% for o in occasions %}
+          <option value="{{ o }}">{{ o }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Number of Recommendations -->
+    <div class="mb-4">
+      <label for="top_n" class="form-label">Number of Recommendations:</label>
+      <input type="number" class="form-control" id="top_n" name="top_n" value="3" min="1" max="20">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-custom w-100">Show Recommendations</button>
+  </form>
+</div>
+
+<!-- Footer -->
+<footer>
+  © 2024 Rent The Runway | Your Style, Your Way | ITPool
+</footer>
+
+<!-- Bootstrap JS -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+  crossorigin="anonymous">
+</script>
+
+</body>
+</html>
+

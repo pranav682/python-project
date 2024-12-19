@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommendations</title>
+  <!-- Bootstrap CSS -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+    rel="stylesheet"
+    crossorigin="anonymous"
+  >
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background: url('https://source.unsplash.com/1600x900/?clothing,fashion') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      backdrop-filter: blur(5px);
+    }
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.8);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .navbar-brand {
+      color: #f8f9fa !important;
+      font-weight: 700;
+      font-size: 1.75rem;
+      letter-spacing: 1px;
+    }
+    h1 {
+      color: #444;
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+    .container {
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      max-width: 900px;
+      animation: slideIn 1s ease-in-out;
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .table {
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #ddd;
+    }
+    .table th {
+      background-color: #5a47a6;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .table td {
+      font-size: 1rem;
+      color: #555;
+    }
+    .btn-custom {
+      background-color: #6c63ff;
+      color: #fff;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-custom:hover {
+      background-color: #483591;
+      transform: translateY(-3px);
+    }
+    .no-data {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #888;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Rent The Runway</a>
+  </div>
+</nav>
+
+<!-- Recommendations Container -->
+<div class="container">
+  <h1>Recommendations for 
+    <span class="text-primary">{{ user_id }}</span> 
+    | <span class="text-secondary">{{ category }}</span> 
+    | <span class="text-success">{{ occasion }}</span>
+  </h1>
+
+  {% if recommendations %}
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th scope="col">Item ID</th>
+          <th scope="col">Average Rating</th>
+          <th scope="col">Review Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rec in recommendations %}
+        <tr>
+          <td><strong>{{ rec.item_id }}</strong></td>
+          <td><span class="badge bg-success">{{ rec.average_rating|round(2) }}</span></td>
+          <td>{{ rec.review_count }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="no-data">No recommendations found for the selected criteria.</p>
+  {% endif %}
+
+  <div class="d-flex justify-content-center">
+    <a href="/" class="btn btn-custom mt-4 px-4">Back to Selection</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  © 2024 Rent The Runway | Recommendations Powered by AI | ITPool
+</footer>
+
+<!-- Bootstrap JS -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+  crossorigin="anonymous">
+</script>
+
+</body>
+</html>
+
